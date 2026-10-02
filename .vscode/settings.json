@@ -1,0 +1,4 @@
+{
+    "python.defaultInterpreterPath": "/tmp/greverse/bin/python",
+    "python.terminal.activateEnvironment": true
+}

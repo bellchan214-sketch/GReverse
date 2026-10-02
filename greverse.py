@@ -114,7 +114,7 @@ def main():
                 downloadImages(validated_urls, args.download_dir, 1, False, args.image)
         else:
             formatted_results = formatOutput(results, 'image', args.output_type)
-            if args.save_output is not None and ('/' in args.save_output or '\\' in args.save_output):
+            if args.save_output is not None:
                 saveOutput(formatted_results, args.output_type, args.save_output)
             else:
                 print(formatted_results)
@@ -131,22 +131,23 @@ def main():
         elif args.restrict_query:
             results = querySearch(args.query, args.max_results, True, googleCreds['devKey'], googleCreds['querySearchID'])
             formatted_results = formatOutput(results, 'query', args.output_type)
-            if args.save_output is not None and ('/' in args.save_output or '\\' in args.save_output):
+            if args.save_output is not None:
                 saveOutput(formatted_results, args.output_type, args.save_output)
             else:
                 print(formatted_results)
         else:
             results = querySearch(args.query, args.max_results, False, googleCreds['devKey'], googleCreds['imageSearchID'])
             formatted_results = formatOutput(results, 'query', args.output_type)
-            if args.save_output is not None and ('/' in args.save_output or '\\' in args.save_output):
+            if args.save_output is not None:
                 saveOutput(formatted_results, args.output_type, args.save_output)
             else:
                 print(formatted_results)
     else:
         print('Error: Invalid use of arguments. You must specify either the image argument or query argument.')
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
-    main()
-    sys.exit(1)
+    sys.exit(main())
 

@@ -111,6 +111,36 @@ You will also need to add both search engine ID's to the creds.py file located i
 
 [Python3_Custom_Search_Guide](https://developers.google.com/custom-search/docs/overview)
 
+## Downloading Catalog Media
+
+`utils/mediaDownload.py` downloads media from HTTP(S) JSON catalog endpoints. Each endpoint must return a list of objects with `url` and `filename` fields. Sources can be repeated; supported media types are JPEG, PNG, GIF, WebP, MP4, and QuickTime, with a default 50 MiB limit per file.
+
+```bash
+python3 utils/mediaDownload.py \
+    --source "https://example.org/media-library-a.json" \
+    --source "https://example.org/media-collection-b.json" \
+    --output-dir downloaded_media
+```
+
+Example catalog response:
+
+```json
+[
+    {"url": "https://example.org/assets/photo.jpg", "filename": "photo.jpg"}
+]
+```
+
+## Local Image Matching
+
+`utils/localImageMatch.py` compares images locally without changing or replacing GReverse's web-search features. It reports exact file duplicates using SHA-256 and visual similarities using SSIM. Install its dependencies and scan the default `images/` directory with:
+
+```bash
+python3 -m pip install scikit-image numpy
+python3 utils/localImageMatch.py --target-dir images
+```
+
+To compare one query image against that directory, add `--query path/to/image.jpg`. Adjust the similarity cutoff with `--threshold 0.45` (valid range: 0 to 1).
+
 <a name="Contributors"></a>
 ## Contributors
 

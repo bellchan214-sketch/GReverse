@@ -1,0 +1,9 @@
+google-api-python-client
+google-cloud-vision
+protobuf
+face_recognition
+tqdm
+dict2xml
+requests
+scikit-image
+setuptools<81

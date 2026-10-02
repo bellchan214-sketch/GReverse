@@ -1,0 +1,15 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "GReverse: CLI help",
+            "type": "process",
+            "command": "/tmp/greverse/bin/python",
+            "args": ["greverse.py", "--help"],
+            "options": {
+                "cwd": "${workspaceFolder}"
+            },
+            "problemMatcher": []
+        }
+    ]
+}

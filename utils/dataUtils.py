@@ -167,12 +167,22 @@ def formatOutput(results, searchtype, outputtype):
             del results['json']
         if outputtype == 'json':
             return json.dumps(results, indent=4, sort_keys=False)
+        return results
     elif outputtype == 'xml':
         if searchtype == 'image' and 'json' in results:
             del results['json']
         return dict2xml(results, wrap='webDetection', indent="       ")
     else:
         return '\n\nError: Invalid output_type argument.'
+
+
+def saveOutput(data, outputtype, filepath):
+    with open(filepath, 'w', encoding='utf-8') as output_file:
+        if outputtype == 'raw':
+            json.dump(data, output_file, indent=4)
+        else:
+            output_file.write(data)
+    print(f'Output saved to: {filepath}')
 
 
 def singleDownload(image_url, file_directory, facecheck, search_image_path):
